@@ -37,7 +37,7 @@ def load_and_preprocess_data(
     bigrams: List[Tuple[str, str]] = []
     for word in words:
         bigrams.extend([(word[i], word[i+1]) for i in range(len(word) - 1)])
-                         
+              
     return bigrams
 
 
@@ -106,9 +106,10 @@ def count_bigrams(
     # Iterate over each bigram and update the count in the tensor
     # TODO
     for i, j in bigrams:
-        idx1 = char_to_idx[i]
-        idx2 = char_to_idx[j]
-        bigram_counts[idx1, idx2] += 1
+        if i in char_to_idx and j in char_to_idx:
+            idx1 = char_to_idx[i]
+            idx2 = char_to_idx[j]
+            bigram_counts[idx1, idx2] += 1
 
     return bigram_counts
 

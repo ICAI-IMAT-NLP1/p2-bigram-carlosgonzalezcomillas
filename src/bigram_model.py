@@ -3,7 +3,7 @@ from typing import Dict, List
 
 
 def bigrams_count_to_probabilities(
-    bigram_counts: torch.Tensor, smooth_factor: int = 0
+    bigram_counts: torch.Tensor, smooth_factor: int = 1
 ) -> torch.Tensor:
     """
     Convert bigram counts to a probability distribution.
@@ -135,10 +135,10 @@ def generate_name(
 
     # Iterate to build the name
     # TODO
-    while len(generate_name) < max_length and current_char != end_token:
+    while len(generated_name) < max_length and current_char != end_token:
         current_char_idx = char_to_idx[current_char]
         new_char = sample_next_character(current_char_idx, bigram_probabilities, idx_to_char)
-        generate_name += new_char
+        generated_name += new_char
         current_char = new_char
 
     return generated_name
