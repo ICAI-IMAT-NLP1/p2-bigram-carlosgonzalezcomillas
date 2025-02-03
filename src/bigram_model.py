@@ -3,7 +3,7 @@ from typing import Dict, List
 
 
 def bigrams_count_to_probabilities(
-    bigram_counts: torch.Tensor, smooth_factor: int = 1
+    bigram_counts: torch.Tensor, smooth_factor: int = 0
 ) -> torch.Tensor:
     """
     Convert bigram counts to a probability distribution.
